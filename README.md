@@ -80,3 +80,37 @@ After you have completed the above tasks and have optimised your database show h
 14)	Add a new review to this property, the review should be from one of our top 20 reviewers.
 
 15)	Add a new review metric called x_factor to the new document and give a score of 10. Show that the average across all metrics is correctly calculated for this listing, with the query you previously developed.
+
+
+# Setup
+
+1. run Jupyter 
+2. run Docker
+3. create MongoDB container in Command Prompt: make sure you don't have 'leftover' container from previous runs
+
+        docker run --name mongodb -d -e MONGO_INITDB_ROOT_USERNAME=AzureDiamond -e MONGO_INITDB_ROOT_PASSWORD=hunter2 -p 27017:27017 mongo
+
+4. run Studio3T
+
+5. create New Connection OR reconnect to existing Connection:
+
+    5.A	In Studio3T create Connection:
+            a.	Press Connection -> New Connection
+            b.	Insert credentials into URI field: mongodb://AzureDiamond:hunter2@localhost:27017
+            c.	Press Test Connection
+            d.	Assign a name to the Connection (top empty line) -> Save
+            e.	Press Connect
+            
+    5.B In Studio3T reconnect to Connection:
+            a. press Connect (top left corner)
+            b. choose MongoDB connection  -> press Connect (MongoDB container must be runnning by this time)
+            
+6.	In Studio3T import the Database:
+            a.	Press Import
+            b.	Choose BSON mongodump archive 
+            c.	Find your database path
+            d.	Select All file formats and choose the database file ‘sampledata.archive’
+            e.	Press Run: be patient while the database loads
+            f.	Inspect the collections and documents
+
+Done!
